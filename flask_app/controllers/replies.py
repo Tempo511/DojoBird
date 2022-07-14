@@ -33,7 +33,7 @@ def edit_reply(post_id, reply_id):
 
 @app.route("/reply/like/<int:id>")
 def like_reply(id):
-    print("made it!! ***********")
+    
     Reply.insert_reply_like({'reply_id' : id,
     'user_id' : session['user_id'], 'status' : 1})
     return jsonify(message="button liked")
