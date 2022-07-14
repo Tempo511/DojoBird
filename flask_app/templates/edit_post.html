@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" 
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='edit_post_style.css') }}">
+    <title>Edit Post</title>
+
+</head>
+<body>
+    <div class='container'>
+
+        <div class="text-center text-light dojo">
+            <h1 class="dojobird">DojoBird</h1>
+        </div>
+
+        <div class="d-flex">
+
+            <div id="sidebar">
+                <a href="/dashboard">Dojo Home</a><br>
+                <a href="/timeline">My Timline</a><br>
+                <a href="/profile/{{session['user_id']}}">Profile</a><br>
+                <a href="/users">Users</a><br>
+                <a href="/logout">Logout</a><br>
+               
+            </div>
+    
+    
+            <div class="edit">
+    
+                <h1>Edit page! </h1>
+                <form action="/post/{{post.id}}/update", method="POST">
+                    
+                    <textarea name="updated_post" id="textbox" cols="30" rows="3">{{post.post}}</textarea>
+                    <!-- <input style="width:fit-content" id="textbox" type="text" value="{{post.post}}" name="updated_post"> -->
+        
+                    <input type="submit" class="button btn-primary" value="Update Post">
+        
+                </form>
+    
+            </div>
+    
+    
+    
+    
+    
+            
+            
+
+
+        </div>
+
+
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: black;
+}
+
+.post {
+    margin-bottom: 50px;
+    text-align: center;
+
+
+}
+
+#sidebar {
+    height: 500px;
+    width: 250px;
+    padding: 15px;
+    font-size: 15pt;
+    background-color: rgb(33, 36, 42);
+    margin-right: 20px;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border: 1px solid black;
+
+   
+}
+
+.container {
+    background-color: rgb(22,24,28);
+    padding: 40px;
+}
+
+.header {
+    padding: 15px;
+    background-color: rgb(33, 36, 42);
+    color: white;
+    border-radius: 10px;
+    
+
+}
+
+.title {
+    margin: 40px;
+    text-align: center;
+
+    
+
+}
+
+.reply_text {
+    text-align: center;
+}
+
+.replies {
+    margin: 20px;
+    padding: 10px;
+    background-color: rgb(33, 36, 42);
+    color: white;
+    border-radius: 10px;
+}
+
+.dojo {
+    padding: 30px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}

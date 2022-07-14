@@ -1,0 +1,62 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: rgb(0,0,0);
+}
+
+#sidebar {
+    height: 500px;
+    width: 250px;
+    padding: 15px;
+    font-size: 15pt;
+    background-color: rgb(33, 36, 42);
+    margin-right: 20px;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border: 1px solid black;
+   
+}
+
+.container {
+    background-color: rgb(22,24,28);
+    padding: 40px;
+}
+
+.profile_header {
+    background-color: rgb(33, 36, 42);
+    padding: 15px;
+    border-radius: 10px;
+    color: white;
+    border: 1px solid black;
+}
+
+
+
+.profile_posts {
+    margin: 20px;
+    padding: 10px;
+    background-color: rgb(33, 36, 42);
+    border-radius: 10px;
+    color: white;
+    border: 1px solid black;
+}
+
+.dojo {
+    padding: 30px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.post {
+    background-color: rgb(37, 41, 49);
+    border-radius: 10px;
+    padding: 10px;
+}

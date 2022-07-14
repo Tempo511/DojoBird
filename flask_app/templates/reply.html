@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" 
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='reply_style.css') }}">
+    <title>Reply</title>
+</head>
+<body>
+    <div class="container">
+
+        <div class="text-center text-light dojo">
+            <h1 class="dojobird">DojoBird</h1>
+        </div>
+
+        <div class="d-flex">
+
+            <div id="sidebar">
+                <a href="/dashboard">Dojo Home</a><br>
+                <a href="/timeline">My Timeline</a><br>
+                <a href="/profile/{{session['user_id']}}">Profile</a><br>
+                <a href="/users">Users</a><br>
+                <a href="/logout">Logout</a><br>
+               
+            </div>
+    
+            <div>
+                <div class="header">
+                    <h1 class="title">From {{User.get_by_id({'user_id' : post.user_id}).first_name}} on {{week[post.created_at.weekday()]}}:</h1>
+                    <h1 class="post"><em>{{post.post}}</em></h1>
+                    <form action="/post/{{post.id}}/reply" method="post">
+                        <div class="form-group reply_text">
+                            <input type="text" name="reply" placeholder="Thoughts?">
+                            <input type="submit" class="button btn-primary" value="Reply">
+            
+                        </div>
+                    </form>
+                    <div class="d-flex">
+                    <p class="post{{post.id}}">{{Post.get_post_with_likes({'id' : post.id})|length}}</p>
+                    <p>_Likes</p>
+    
+                    </div>
+    
+                    {% if not Post.isLiked({'user_id' : session['user_id'], 'post_id' : post.id}): %}    
+                    <button onclick="likePost({{post.id}})" class="button btn-primary like{{post.id}}"><img src="{{ url_for('static', filename='thumbs-up-left.svg') }}" alt="thumbs up" width="40" height="40">   </button>
+                    <button style='display:none' onclick="unlikePost({{post.id}})" class="button btn-dark unlikebtn unlike{{post.id}}"><img src="{{ url_for('static', filename='thumbs-down-right.svg') }}" alt="thumbs down" width="40">   </button>
+                    {% else: %}
+                    <button style="display:none" onclick="likePost({{post.id}})" class="button btn-primary like{{post.id}}"><img src="{{ url_for('static', filename='thumbs-up-left.svg') }}" alt="thumbs up" width="40" height="40">   </button>
+                    <button onclick="unlikePost({{post.id}})" class="button btn-dark unlikebtn unlike{{post.id}}"><img src="{{ url_for('static', filename='thumbs-down-right.svg') }}" alt="thumbs down" width="40">  </button>
+                    {% endif %}
+                </div>
+                
+    
+    
+                {% for reply in replies %}
+                <div class="border mt-10 replies">
+                    <p>{{reply.reply}}</p>
+                    <p>- {{User.get_by_id({'user_id' : reply.user_id}).first_name}} {{User.get_by_id({'user_id' : reply.user_id}).last_name}}</p>
+                    
+                    <div class="d-flex">
+                        <p class="reply{{reply.id}}">{{Reply.get_reply_with_likes({'reply_id' : reply.id})|length}}</p>
+                        <p>_Likes</p>
+    
+                    </div>
+                    
+    
+                    {% if not Reply.isLiked({'user_id' : session['user_id'], 'reply_id' : reply.id}): %}  
+                    <button onclick="likeReply({{reply.id}})" class="button btn-primary like{{reply.id}}"><img src="{{ url_for('static', filename='thumbs-up-left.svg') }}" alt="thumbs up" width="40">  </button>
+                    <button style="display:none" onclick="unlikeReply({{reply.id}})" class="button btn-dark unlikebtn unlike{{reply.id}}"><img src="{{ url_for('static', filename='thumbs-down-right.svg') }}" alt="thumbs down" width="40"></button>
+                    {% else: %}
+                    <button style="display:none" onclick="likeReply({{reply.id}})" class="button btn-primary like{{reply.id}}"><img src="{{ url_for('static', filename='thumbs-up-left.svg') }}" alt="thumbs up" width="40">  </button>
+                    <button onclick="unlikeReply({{reply.id}})" class="button btn-dark unlikebtn unlike{{reply.id}}"><img src="{{ url_for('static', filename='thumbs-down-right.svg') }}" alt="thumbs down" width="40"></button>
+                    {% endif %}
+                    {% if reply.user_id == user.id %}
+                    <a href="/reply/{{post.id}}/{{reply.id}}/delete">Delete</a>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+    
+    
+    
+    
+
+        </div>
+
+        
+
+    </div>
+
+
+<script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
