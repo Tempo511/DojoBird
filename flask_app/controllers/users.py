@@ -16,9 +16,9 @@ def home():
 @app.route('/user/login', methods=['POST'])
 def login():
     # see if the username provided exists in the database
-
     data = { "email" : request.form["login_email"] }
     user_in_db = User.get_by_email(data)
+
     # user is not registered in the db
     if not user_in_db:
         flash("Invalid Email", 'err_user_invalid')
@@ -36,7 +36,7 @@ def login():
 def register_user():
     # validate the form here ...
     if not User.validate_user(request.form):
-        # we redirect to the template with the form.
+        #redirect to the template with the form.
         return redirect('/')
     # create the hash
     pw_hash = bcrypt.generate_password_hash(request.form['password'])
@@ -50,7 +50,7 @@ def register_user():
     }
     # Call the save @classmethod on User!   
     user_id = User.insert_user(data)
-    print(user_id)
+    
 
     # store user id into session
     session['user_id'] = user_id
@@ -61,7 +61,7 @@ def register_user():
 def dashboard():
     if User.validate_session(session):
         dash_user = User.get_by_id(session)
-        print("user", dash_user)
+    
         dash_posts= Post.select_all_posts()
 
         dash_posts.reverse()

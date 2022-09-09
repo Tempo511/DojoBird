@@ -2,7 +2,7 @@ from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app.models import reply
 from flask import flash
 
-# model the class after the friend table from our database
+
 class Post:
     def __init__( self , data ):
         self.id = data['id']

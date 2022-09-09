@@ -68,9 +68,6 @@ class Reply:
 
         likes_list = []
 
-        print("*************** result *********")
-        print(results)
-
         if not results:
             return likes_list
 
